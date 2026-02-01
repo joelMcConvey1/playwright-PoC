@@ -1,9 +1,8 @@
+'use strict'
+
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
 const { CookieBanner } = require("../components/cookie-banner");
-
-const { BASE_URL } = require("../config/env");
-const { Paths } = require("../utilities/paths");
 
 class FilterOverseasPage extends BasePage {
     constructor(page) {
@@ -23,20 +22,22 @@ class FilterOverseasPage extends BasePage {
     }
 
     async validatePageHeader() {
-        await this.validations.validatePageHasChanged(this.uriBuilder.generateUrl(BASE_URL, Paths.FILTER.OVERSEAS));
         await this.validations.validateElementExists(this.pageHeader, "Page Header");
 
         await this.cookieBanner.rejectCookies();
     }
 
-    async selectUkOrOverseasApplication(isUkApplication) {
+    async selectUkOrOverseasApplication(isUkApplication, countryOfApplication) {
         if (isUkApplication === "Yes") {
-            await this.actions.click(this.yesRadioButton);
+            await this.actions.click(this.yesRadioButton, "Yes Radio Button");
         } else {
-            await this.actions.click(this.noRadioButton);
-            await this.actions.selectOption(this.countryDropdown, "Ireland")
+            await this.actions.click(this.noRadioButton, "No Radio Button");
+            await this.actions.selectOption(
+                this.countryDropdown, countryOfApplication, "Country Dropdown", countryOfApplication);
         }
+    }
 
+    async clickContinue() {
         await this.continueButton.clickContinue();
     }
 }

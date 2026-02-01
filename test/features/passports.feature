@@ -4,12 +4,23 @@ Feature: Passport Application
   Background: User navigates to the GOV.UK passport page
     Given the user navigates to the passports page
 
-  @SMK1
+  @data:uk-passport-application
+  Scenario: User starts an application
+    When the user answers if they live in the UK
+    And the user uploads a photo
+
+  @data:ovs-passport-application
+  Scenario: User starts an application
+    When the user answers if they live in the UK
+    And the user uploads a photo
+
+  @data:ovs-passport-application-country-specific
   Scenario Outline: User starts an application
-    When the user selects "<Answer>" to do they live in the UK
+    When a user begins an application from "<Country>"
     And the user uploads a photo
 
     Examples:
-    | Answer |
-    | Yes    |
-    | No     |
+    | Country |
+    | Spain   |
+    | France  |
+    | Italy   |

@@ -1,0 +1,10 @@
+{
+  "decisions": {
+    "1101088|playwright-cucumber>@cucumber/cucumber>semver": {
+      "decision": "postpone",
+      "madeAt": 1769964423261
+    }
+  },
+  "rules": {},
+  "version": 1
+}

@@ -1,8 +1,7 @@
+'use strict'
+
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
-
-const { BASE_URL } = require("../config/env");
-const { Paths } = require("../utilities/paths");
 
 class FilterAgePage extends BasePage {
     constructor(page) {
@@ -20,19 +19,18 @@ class FilterAgePage extends BasePage {
     }
 
     async validatePageHeader() {
-        await this.validations.validatePageHasChanged(this.uriBuilder.generateUrl(BASE_URL, Paths.FILTER.AGE))
         await this.validations.validateElementExists(this.pageHeader, "Page Header");
     }
 
-    async inputDateOfBirth() {
-        await this.actions.sendKeys(this.dayInput, "01");
-        await this.validations.validateTextIsPresentInInput(this.dayInput, "01");
+    async inputDateOfBirth({ day, month, year }) {
+        await this.actions.sendKeys(this.dayInput, day, "Day Input");
+        await this.validations.validateTextIsPresentInInput(this.dayInput, day);
 
-        await this.actions.sendKeys(this.monthInput, "12");
-        await this.validations.validateTextIsPresentInInput(this.monthInput, "12");
+        await this.actions.sendKeys(this.monthInput, month, "Month Input");
+        await this.validations.validateTextIsPresentInInput(this.monthInput, month);
 
-        await this.actions.sendKeys(this.yearInput, "2000");
-        await this.validations.validateTextIsPresentInInput(this.yearInput, "2000");
+        await this.actions.sendKeys(this.yearInput, year, "Year Input");
+        await this.validations.validateTextIsPresentInInput(this.yearInput, year);
     }
 
     async clickContinue() {

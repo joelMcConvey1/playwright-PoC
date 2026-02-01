@@ -1,8 +1,7 @@
+'use strict'
+
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
-
-const { BASE_URL } = require("../config/env");
-const { Paths } = require("../utilities/paths");
 
 class PreviousPassportPage extends BasePage {
     constructor(page) {
@@ -15,16 +14,22 @@ class PreviousPassportPage extends BasePage {
         this.pageHeader = page.getByRole('heading', { name: 'Have you had a UK passport before?'});
 
         this.yesRadioButton = page.getByRole('radio', { name: 'Yes' });
+        this.noRadioButton = page.getByRole('radio', { name: 'No' });
     }
 
     async validatePageHeader() {
-        await this.validations.validatePageHasChanged(this.uriBuilder.generateUrl(BASE_URL, Paths.FILTER.PREVIOUS_PASSPORT));
         await this.validations.validateElementExists(this.pageHeader, "Page Header");
     }
 
-    async selectPreviousPassportStatus(isUkApplication) {
-        await this.actions.click(this.yesRadioButton);
+    async selectPreviousPassportStatus(isRenewal) {
+        if (isRenewal === "Yes") {
+            await this.actions.click(this.yesRadioButton, "Yes Radio Button");
+        } else {
+            await this.actions.click(this.noRadioButton, "No Radio Button");
+        }
+    }
 
+    async clickContinue() {
         await this.continueButton.clickContinue();
     }
 }

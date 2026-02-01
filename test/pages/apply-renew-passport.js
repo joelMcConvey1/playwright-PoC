@@ -1,3 +1,5 @@
+'use strict'
+
 const { BasePage } = require("./base/base-page");
 
 class PassportPage extends BasePage {
@@ -13,7 +15,7 @@ class PassportPage extends BasePage {
     }
 
     async selectStartNow() {
-        await this.actions.click(this.startButton);
+        await this.actions.click(this.startButton, "Start Now Button");
     }
 }
 

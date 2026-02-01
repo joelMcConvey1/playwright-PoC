@@ -1,37 +1,42 @@
+'use strict'
+
 const winston = require('winston');
 
+let currentContext = { scenario: null, worker: process.pid };
+
 const logger = winston.createLogger({
-    level: 'debug',
-    format: winston.format.combine(
-        winston.format.timestamp({ format: 'HH:mm:ss' }),
-        winston.format.printf(({ timestamp, level, message }) => {
-            const formattedLevel = level.toUpperCase();
-            return `${timestamp} [${formattedLevel}] ${message}`; }) ),
-    transports: [
-        new winston.transports.Console()
-    ]
+  level: 'debug',
+  format: winston.format.combine(
+    winston.format.timestamp({ format: 'HH:mm:ss' }),
+    winston.format.printf(({ timestamp, level, message }) => {
+
+      const formattedLevel = level.toUpperCase();
+      const scenarioRun = currentContext.scenario ? ` [${currentContext.scenario} @${currentContext.worker}]` : '';
+
+      return `${timestamp} [${formattedLevel}]${scenarioRun} ${message}`;
+    })
+  ),
+  transports: [new winston.transports.Console()]
 });
 
-const Log = {
-    info(message) {
-        logger.info(message);
-    },
+const log = {
+  setContext({ scenario, worker }) {
+    currentContext = { scenario, worker };
+  },
 
-    warn(message) {
-        logger.warn(message);
-    },
+  info(message) { logger.info(message); },
 
-    error(message, error) {
-        if (error) {
-            logger.error(`${message} - ${error.stack || error.message}`);
-        } else {
-            logger.error(message);
-        }
-    },
+  warn(message) { logger.warn(message); },
 
-    debug(message) {
-        logger.debug(message);
+  error(message, error) {
+    if (error) {
+      logger.error(`${message} - ${error.stack || error.message}`);
+    } else {
+      logger.error(message);
     }
+  },
+
+  debug(message) { logger.debug(message); }
 };
 
-module.exports = Log;
+module.exports = log;

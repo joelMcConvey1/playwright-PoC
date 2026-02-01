@@ -1,3 +1,5 @@
+'use strict'
+
 const { PassportPage } = require("../apply-renew-passport");
 const { FilterOverseasPage } = require("../filter-overseas");
 const { FilterAgePage } = require("../filter-age");

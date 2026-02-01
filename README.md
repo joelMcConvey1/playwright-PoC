@@ -22,9 +22,8 @@ This would allow us to test microservices independently while sharing a common a
 ## Tech Stack
 - Playwright
 - Cucumber.js
-- JavaScript — test and framework code
+- JavaScript
 - Node.js
-- Winston
 
 ## Running the Tests
 Install dependencies:
@@ -33,13 +32,22 @@ Install dependencies:
 Run Tests:
 `npm run test`
 
+Run Tests in Parallel:
+`npm run test:parallel`
+
+Run Tests Headless:
+`HEADLESS=true npm test`
+
+## Other Commands
+Check for package updates:
+`npm outdated`
+
+Check for vulnerable packages:
+`npm audit`
+
 ## Next Steps
-- Move setup, base page, utilities (exc. paths), logger, and potentially components into a shared library
-- Building out further actions & validations potentially
-- Could extend Paths to pass dynamic data to support query params
-- PageFactory to be removed in shared library hook (Each service can have a hook for this)
-- Investigate passing base url through Cucumber (doesn't look possible atm)
+- Move setup, base page, utilities, logger, and potentially components into a shared library
+- PageFactory & LoadScenarioData to be removed in shared library hook (Each service can have a separate hook for this)
 - BrowserStack integration
-- Add parallel execution
-- Approach Storing data between steps
-- Using JSON to feed data?
+- Could look at Playwright's Network capability to get around split journeys (filter -> photo -> filter)
+- Headless Mode -> Failing locally as page blocked :(

@@ -1,6 +1,7 @@
 'use strict'
 
-const { Given, When} = require("@cucumber/cucumber");
+const { Given, When } = require("@cucumber/cucumber");
+const { Checker } = require("./helpers/checker");
 
 Given('the user navigates to the passports page', async function () {
     await this.pages.passportPage.openHomepage();
@@ -33,7 +34,7 @@ When('the user uploads a photo', async function () {
     await this.pages.previousPassportPage.selectPreviousPassportStatus(this.scenarioData.isRenewal);
     await this.pages.previousPassportPage.clickContinue();
 
-    if (this.scenarioData.isUkApplication === "Yes") {
+    if (Checker.isUkApplication(this.scenarioData.isUkApplication)) {
         await this.pages.passportUrgentPage.validatePageHeader();
         await this.pages.passportUrgentPage.selectPassportUrgency(this.scenarioData.passportUrgency);
         await this.pages.passportUrgentPage.clickContinue();

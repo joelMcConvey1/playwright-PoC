@@ -1,7 +1,7 @@
 {
   "name": "PlaywrightPoC",
   "version": "1.0.0",
-  "description": "",
+  "description": "Proof of Concept for using Cucumber/Playwright to build Microservice Browser Tests",
   "main": "src/index.js",
   "scripts": {
     "test": "cucumber-js",

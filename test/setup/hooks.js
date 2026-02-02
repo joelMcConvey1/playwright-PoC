@@ -18,7 +18,7 @@ Before(async function (scenario) {
 
     // Service Hook
     this.scenarioData = loadScenarioData(scenario, {
-        dataDirectory: path.resolve(__dirname, '../data'),
+        dataDirectory: path.resolve(__dirname, '../data/scenarios'),
         contextClass: ScenarioContext
     });
 

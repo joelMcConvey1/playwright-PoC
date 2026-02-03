@@ -2,6 +2,7 @@
 
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
+const { checkIsUrgentApplication} = require("../helpers/checker");
 
 class PassportUrgentPage extends BasePage {
     constructor(page) {
@@ -22,7 +23,7 @@ class PassportUrgentPage extends BasePage {
     }
 
     async selectPassportUrgency(passportUrgency) {
-        if (passportUrgency === "Yes") {
+        if (checkIsUrgentApplication(passportUrgency)) {
             await this.actions.click(this.yesRadioButton, "Yes Radio Button");
         } else {
             await this.actions.click(this.noRadioButton, "No Radio Button");

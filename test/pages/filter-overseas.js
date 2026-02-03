@@ -3,6 +3,7 @@
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
 const { CookieBanner } = require("../components/cookie-banner");
+const { checkIsUkApplication } = require("../helpers/checker");
 
 class FilterOverseasPage extends BasePage {
     constructor(page) {
@@ -28,7 +29,7 @@ class FilterOverseasPage extends BasePage {
     }
 
     async selectUkOrOverseasApplication(isUkApplication, countryOfApplication) {
-        if (isUkApplication === "Yes") {
+        if (checkIsUkApplication(isUkApplication)) {
             await this.actions.click(this.yesRadioButton, "Yes Radio Button");
         } else {
             await this.actions.click(this.noRadioButton, "No Radio Button");

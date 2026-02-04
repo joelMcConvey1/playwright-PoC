@@ -2,6 +2,7 @@
 
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
+const { checkIsRenewal } = require("../helpers/checker");
 
 class PreviousPassportPage extends BasePage {
     constructor(page) {
@@ -22,7 +23,7 @@ class PreviousPassportPage extends BasePage {
     }
 
     async selectPreviousPassportStatus(isRenewal) {
-        if (isRenewal === "Yes") {
+        if (checkIsRenewal(isRenewal)) {
             await this.actions.click(this.yesRadioButton, "Yes Radio Button");
         } else {
             await this.actions.click(this.noRadioButton, "No Radio Button");

@@ -2,6 +2,7 @@
 
 const { PassportPage } = require("../apply-renew-passport");
 const { FilterOverseasPage } = require("../filter-overseas");
+const { CookieBanner } = require("../../components/cookie-banner");
 const { FilterAgePage } = require("../filter-age");
 const { HowToApplyPage } = require("../how-to-apply");
 const { PreviousPassportPage } = require("../previous-passport");
@@ -18,6 +19,10 @@ class PageFactory {
 
     get filterOverseasPage() {
         return new FilterOverseasPage(this.page);
+    }
+
+    get cookieBanner() {
+        return new CookieBanner(this.page);
     }
 
     get filterAgePage() {

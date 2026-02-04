@@ -2,7 +2,7 @@
 
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
-const { checkIsUrgentApplication} = require("../helpers/checker");
+const { checkIsUrgentApplication } = require("../helpers/checker");
 
 class PassportUrgentPage extends BasePage {
     constructor(page) {

@@ -11,6 +11,9 @@ When('the user answers if they live in the UK', async function () {
     await this.pages.passportPage.selectStartNow();
 
     await this.pages.filterOverseasPage.validatePageHeader();
+
+    await this.pages.cookieBanner.rejectCookies();
+
     await this.pages.filterOverseasPage.selectUkOrOverseasApplication(
         this.scenarioData.isUkApplication, this.scenarioData.countryOfApplication);
     await this.pages.filterOverseasPage.clickContinue();
@@ -28,6 +31,7 @@ When('a user begins an application from {string}', async function (countryOfAppl
 When('the user uploads a photo', async function () {
     await this.pages.filterAgePage.validatePageHeader();
     await this.pages.filterAgePage.inputDateOfBirth(this.scenarioData.dateOfBirth);
+    await this.pages.filterAgePage.validateDateOfBirth(this.scenarioData.dateOfBirth);
     await this.pages.filterAgePage.clickContinue();
 
     await this.pages.previousPassportPage.validatePageHeader();

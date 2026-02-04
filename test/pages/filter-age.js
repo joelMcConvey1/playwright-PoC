@@ -24,12 +24,17 @@ class FilterAgePage extends BasePage {
 
     async inputDateOfBirth({ day, month, year }) {
         await this.actions.sendKeys(this.dayInput, day, "Day Input");
-        await this.validations.validateTextIsPresentInInput(this.dayInput, day);
 
         await this.actions.sendKeys(this.monthInput, month, "Month Input");
-        await this.validations.validateTextIsPresentInInput(this.monthInput, month);
 
         await this.actions.sendKeys(this.yearInput, year, "Year Input");
+    }
+
+        async validateDateOfBirth({ day, month, year }) {
+        await this.validations.validateTextIsPresentInInput(this.dayInput, day);
+
+        await this.validations.validateTextIsPresentInInput(this.monthInput, month);
+
         await this.validations.validateTextIsPresentInInput(this.yearInput, year);
     }
 

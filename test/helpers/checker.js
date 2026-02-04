@@ -8,7 +8,12 @@ function checkIsUrgentApplication(value) {
     return String(value).trim().toLowerCase() === 'yes';
 }
 
+function checkIsRenewal(value) {
+    return String(value).trim().toLowerCase() === 'yes';
+}
+
 module.exports = {
     checkIsUkApplication,
-    checkIsUrgentApplication
+    checkIsUrgentApplication,
+    checkIsRenewal
 }

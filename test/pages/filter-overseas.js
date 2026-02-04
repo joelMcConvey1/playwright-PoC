@@ -2,7 +2,6 @@
 
 const { BasePage } = require("./base/base-page");
 const { ContinueButton } = require("../components/continue-button");
-const { CookieBanner } = require("../components/cookie-banner");
 const { checkIsUkApplication } = require("../helpers/checker");
 
 class FilterOverseasPage extends BasePage {
@@ -11,7 +10,6 @@ class FilterOverseasPage extends BasePage {
 
         // Components
         this.continueButton = new ContinueButton(page);
-        this.cookieBanner = new CookieBanner(page);
 
         // Page Elements
         this.pageHeader = page.getByRole('heading', { name: 'Do you live in the UK?'});
@@ -24,8 +22,6 @@ class FilterOverseasPage extends BasePage {
 
     async validatePageHeader() {
         await this.validations.validateElementExists(this.pageHeader, "Page Header");
-
-        await this.cookieBanner.rejectCookies();
     }
 
     async selectUkOrOverseasApplication(isUkApplication, countryOfApplication) {

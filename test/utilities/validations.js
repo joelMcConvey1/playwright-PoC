@@ -14,7 +14,7 @@ class Validations {
         log.debug(`Expected: "${expectedText}"`);
         log.debug(`Actual: "${actual}"`);
 
-        await expect(actual).toEqual(expectedText.trim());
+        expect(actual).toEqual(expectedText.trim());
     }
 
     async validateTextIsPresentOnPage(text) {
@@ -34,7 +34,7 @@ class Validations {
 
         log.debug(`Validating that "${text}" is present in the input field.`);
 
-        await expect(inputValue.trim()).toEqual(text.trim());
+        expect(inputValue.trim()).toEqual(text.trim());
     }
 
     async validateElementExists(element, description = 'element') {
@@ -61,7 +61,7 @@ class Validations {
         const actualPath = new URL(this.page.url()).pathname;
         const expectedPath = new URL(expectedUrl).pathname;
 
-        await expect(actualPath).toEqual(expectedPath);
+        expect(actualPath).toEqual(expectedPath);
     }
 
     async formatText(element) {
